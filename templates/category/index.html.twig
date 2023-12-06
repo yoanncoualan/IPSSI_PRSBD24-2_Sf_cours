@@ -3,12 +3,13 @@
 {% block title %}Hello CategoryController!{% endblock %}
 
 {% block body %}
-    <h1>Liste des catégories</h1>
+    <h1>{{ 'categorie.titre'|trans }}</h1>
+    <p>{{ 'categorie.nb'|trans({'%nb%': categories|length}) }}</p>
     {% if categories is not empty %}
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nom</th>
+                    <th>{{'Nom'|trans}}</th>
                     <th>Description</th>
                     <th>Action</th>
                 </tr>

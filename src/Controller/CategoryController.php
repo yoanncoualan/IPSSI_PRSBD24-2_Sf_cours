@@ -9,12 +9,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
     #[Route('/', name: 'app_category')]
-    public function index(EntityManagerInterface $em, Request $request): Response
+    public function index(EntityManagerInterface $em, Request $request, TranslatorInterface $translator): Response
     {
 
         $categorie = new Categorie();
@@ -27,7 +28,7 @@ class CategoryController extends AbstractController
             $em->persist($categorie);
             $em->flush();
 
-            $this->addFlash('success', 'Catégorie ajoutée');
+            $this->addFlash('success', $translator->trans('categorie.cree'));
         }
 
         // Récupération des catégories (SELECT *)
